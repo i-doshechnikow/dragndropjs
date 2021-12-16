@@ -27,6 +27,7 @@ function createList() {
     .map((a) => a.value)
     .forEach((person, index) => {
       const listItem = document.createElement("li");
+
       listItem.setAttribute("data-index", index);
       listItem.innerHTML = `<span class="number">${index + 1}</span>
     <div class="draggable" draggable="true">
@@ -38,7 +39,41 @@ function createList() {
 
       draggable_list.appendChild(listItem);
     });
+  addEventListeners();
 }
 
-// console.log("draggable_list :>> ", draggable_list);
-// console.log("check :>> ", check);
+function addEventListeners() {
+  const draggables = document.querySelectorAll(".draggable");
+  const dragListItems = document.querySelectorAll(".draggable-list li");
+
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", dragStart);
+  });
+
+  dragListItems.forEach((dragItem) => {
+    dragItem.addEventListener("dragover", dragOver);
+    dragItem.addEventListener("drop", dragDrop);
+    dragItem.addEventListener("dragenter", dragEnter);
+    dragItem.addEventListener("dragleave", dragLeave);
+  });
+}
+
+function dragStart() {
+  console.log("start");
+}
+
+function dragOver() {
+  console.log("over");
+}
+
+function dragDrop() {
+  console.log("drop");
+}
+
+function dragEnter() {
+  console.log("enter");
+}
+
+function dragLeave() {
+  console.log("leave");
+}
