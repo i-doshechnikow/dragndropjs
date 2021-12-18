@@ -89,3 +89,19 @@ function addEventListeners() {
     dragItem.addEventListener("dragleave", dragLeave);
   });
 }
+
+function checkOrder() {
+  listItems.forEach((listItem, index) => {
+    const personName = listItem.querySelector(".draggable").innerText.trim();
+    if (personName !== richestPeople[index]) {
+      listItem.classList.add("wrong");
+    } else {
+      listItem.classList.remove("wrong");
+      listItem.classList.add("right");
+    }
+  });
+}
+
+check.addEventListener("click", (event) => {
+  checkOrder();
+});
